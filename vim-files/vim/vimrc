@@ -106,7 +106,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " Map : to ; also in command mode.
-"nnoremap ; :
+nnoremap ; :
 
 " Set vim to save the file on focus out.
 au FocusLost * :wa
@@ -239,3 +239,14 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     execfile(activate_this, dict(__file__=activate_this))
 EOF
+
+" Smart intendation
+:vnoremap < <gv
+:vnoremap > >gv
+
+" Better saving
+map :w :up
+
+" Better confirmation
+" :map :q :confirm q
+

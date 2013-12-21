@@ -22,6 +22,9 @@
 [submodule "vim-files/vim/bundle/fugitive"]
 	path = vim-files/vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim-files/vim/bundle/Command-T"]
-	path = vim-files/vim/bundle/Command-T
+[submodule "vim-files/vim/bundle/command-t"]
+	path = vim-files/vim/bundle/command-t
 	url = git@github.com:wincent/Command-T.git
+[submodule "vim-files/vim/bundle/snipmate.vim"]
+    path = vim-files/vim/bundle/snipmate
+    url = https://github.com/davekr/snipmate.vim.git
