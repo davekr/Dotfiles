@@ -3,6 +3,8 @@
 " Pathogen settings.
 filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
+Helptags
 filetype plugin indent on
 
 " Make vim incompatbile to vi.
@@ -43,10 +45,9 @@ set matchtime=3
 
 "Changing Leader Key
 let mapleader = ","
-
+""""
 " Set title to window
-set title
-
+set title 
 " Dictionary path, from which the words are being looked up.
 set dictionary=/usr/share/dict/words
 
@@ -69,16 +70,15 @@ set incsearch
 set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 
 " Make Vim to handle long lines nicely.
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=79
-colorschem desert
+"set colorcolumn=79
 
 " To  show special characters in Vim
 "set list
@@ -106,7 +106,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " Map : to ; also in command mode.
-nnoremap ; :
+"nnoremap ; :
 
 " Set vim to save the file on focus out.
 au FocusLost * :wa
@@ -114,7 +114,7 @@ au FocusLost * :wa
 " Adding More Shorcuts keys using leader kye.
 " Leader Kye provide separate namespace for specific commands.
 ",W Command to remove white space from a file.
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+""nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " ,ft Fold tag, helpful for HTML editing.
 nnoremap <leader>ft vatzf
@@ -129,7 +129,7 @@ nnoremap <leader>v V`]
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 
 " jj For Qicker Escaping between normal and editing mode.
-inoremap jj <ESC>
+"inoremap jj <ESC>
 
 
 " Working with split screen nicely
@@ -152,7 +152,7 @@ set wildignore+=migrations "Django migrations"
 set wildignore+=*.pyc "Python Object codes"
 set wildignore+=*.orig "Merge resolution files"
 
-" Make Sure that Vim returns to the same line when we reopen a file"
+"Make Sure that Vim returns to the same line when we reopen a file"
 augroup line_return
     au!
     au BufReadPost *
@@ -175,10 +175,19 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=L
     set guioptions+=a
-    set guioptions+=m
+    set guioptions-=m
     colo badwolf
     set listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
+else
+    set t_Co=256
+    colorschem badwolf
 endif
+
+" Special Settings for Consoles
+"if !has("gui_running")
+"    set t_Co=256
+"    colorschem badwolf
+"endif
 
 " Source the vimrc file after saving it
 "autocmd bufwritepost .vimrc source ~/.vimrc
@@ -190,7 +199,7 @@ endif
 
 " Mapping to NERDTree
 nnoremap <C-n> :NERDTreeToggle<cr>
-let NERDTreeIgnore = ['\.pyc$', '\~$']
+let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
 :ia pdb import ipdb; ipdb.set_trace()<ESC>
 
 " Mini Buffer some settigns."
@@ -199,13 +208,22 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
+" Tab color settings to make it more visible.
+hi MBEChanged ctermfg=white
+hi MBENormal ctermfg=white
+
 " Rope Plugin settings
-imap <leader>j <ESC>:RopeGotoDefinition<cr>
+" imap <leader>j <ESC>:RopeGotoDefinition<cr>
 nmap <leader>j <ESC>:RopeGotoDefinition<cr>
 
 " Tagbar key bindings."
 nmap <leader>l <ESC>:TagbarToggle<cr>
 imap <leader>l <ESC>:TagbarToggle<cr>i
+
+" Snipmate remap settings. It's binding overwritten standard
+" bindings.
+" Snipmate using bellow VIM's default keys, just unmap it.
+" autocmd VimEnter * unmap! <C-i>
 
 
 " =========== END Plugin Settings =========="
