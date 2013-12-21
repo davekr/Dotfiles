@@ -190,6 +190,8 @@ endif
 
 " Mapping to NERDTree
 nnoremap <C-n> :NERDTreeToggle<cr>
+let NERDTreeIgnore = ['\.pyc$', '\~$']
+:ia pdb import ipdb; ipdb.set_trace()<ESC>
 
 " Mini Buffer some settigns."
 let g:miniBufExplMapWindowNavVim = 1
@@ -208,3 +210,14 @@ imap <leader>l <ESC>:TagbarToggle<cr>i
 
 " =========== END Plugin Settings =========="
 "
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
